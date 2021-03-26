@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float MoveSpeed = 100;
     public float JumpForce = 500;
     public GameObject Capsule;
+    public SquashAnStretch Squash;
     private CustomCharecterController charecterController;
     private Rigidbody body;
 
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 rotvec = Vector3.zero;
     private bool capsuleBeRotating = false;
+    private bool landed = true;
     private float capsuleRotateTimer = 0;
     private float gBuf = 1;
 
@@ -157,6 +159,20 @@ public class PlayerMovement : MonoBehaviour
         //        Animation.SetBool("Grounded", false);
         //    }
         //}
+
+        if(charecterController.Grounded || coyoteTimer < COYOTE_THRESH)
+        {
+            if (!landed)
+            {
+                landed = true;
+                Squash.SquishAmount = new Vector3(1.5f, 0.5f, 1.5f);
+            }
+        }
+        else
+        {
+            landed = false;
+        }
+
         Animation.SetBool("Grounded", charecterController.Grounded || coyoteTimer < COYOTE_THRESH);
 
         Animation.SetFloat("Yvelocity", body.velocity.y);
@@ -172,5 +188,7 @@ public class PlayerMovement : MonoBehaviour
         Animation.SetBool("Grounded", false);
         jumpBufferTimer = JUMP_BUFFER_TIMER;
         coyoteTimer = COYOTE_THRESH;
+
+        Squash.SquishAmount = new Vector3(0.75f,1.25f, 0.75f);
     }
 }
