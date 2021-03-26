@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float MoveSpeed = 100;
+    public float JumpForce = 500;
     public GameObject Capsule;
     private CustomCharecterController charecterController;
+    private Rigidbody body;
 
     public float TurnSpeed = 5;
 
@@ -23,17 +25,40 @@ public class PlayerMovement : MonoBehaviour
     private float jumpBufferTimer = 0;
     private float JUMP_BUFFER_TIMER = 0.1f;
 
+    private Vector2 oldMovement = Vector2.zero;
+
     public Animator Animation;
 
     private void Awake()
     {
         charecterController = GetComponent<CustomCharecterController>();
+        body = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
         float hori = Input.GetAxisRaw("Horizontal");
         float vert = Input.GetAxisRaw("Vertical");
+
+        Vector2 mement = new Vector2(hori, vert);
+
+        oldMovement = Vector2.MoveTowards(oldMovement, mement, MoveSpeed *  Time.deltaTime);
+
+        Animation.SetFloat("Xpos", oldMovement.x);
+        Animation.SetFloat("Ypos", oldMovement.y);
+
+        
+
+        // The Aiming Stuff
+        if (Input.GetMouseButtonDown(1))
+        {
+            Animation.SetBool("IsAiming", true);
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            Animation.SetBool("IsAiming", false);
+        }
+
 
         Vector3 movement = new Vector3(0, 0, 0);
 
@@ -62,8 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
             movement = movement.normalized * (MoveSpeed * acceleration);
 
-            Animation.SetFloat("Xpos", Input.GetAxis("Horizontal"));
-            Animation.SetFloat("Ypos", Input.GetAxis("Vertical"));
+            
         }
         else if(charecterController.Grounded) //Not Moving grounded
         {
@@ -118,14 +142,35 @@ public class PlayerMovement : MonoBehaviour
             gBuf += Time.deltaTime;
 
         }
+
+        //if(!Animation.GetBool("Grounded"))
+        //{
+        //    if (charecterController.Grounded)
+        //    {
+        //        Animation.SetBool("Grounded", true);
+        //    }
+        //}
+        //else
+        //{
+        //    if (!charecterController.Grounded)
+        //    {
+        //        Animation.SetBool("Grounded", false);
+        //    }
+        //}
+        Animation.SetBool("Grounded", charecterController.Grounded || coyoteTimer < COYOTE_THRESH);
+
+        Animation.SetFloat("Yvelocity", body.velocity.y);
+
     }
 
     public void Jump()
     {
-        charecterController.Jump(500);
+        charecterController.Jump(JumpForce);
         capsuleBeRotating = true;
         capsuleRotateTimer = 0;
         gBuf = 0;
+        Animation.SetBool("Grounded", false);
         jumpBufferTimer = JUMP_BUFFER_TIMER;
+        coyoteTimer = COYOTE_THRESH;
     }
 }
