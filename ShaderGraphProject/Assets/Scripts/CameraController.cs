@@ -15,6 +15,8 @@ public class CameraController : MonoBehaviour
     public float MinViewAngle = -45f;
     public float MaxViewAngle = 45f;
 
+    private float doubleClickTimer = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +74,8 @@ public class CameraController : MonoBehaviour
 
         //Look at the target.
         transform.LookAt(Target.position +  ((Target.right + Target.up).normalized * RotateRadius));
+
+        doubleClickTimer += Time.deltaTime;
     }
 
     public void HandleLockState() // handels switching in and out of lock state on click and escape press
@@ -87,7 +91,16 @@ public class CameraController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Cursor.lockState = CursorLockMode.Locked;
+                if(doubleClickTimer < 0.2)
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+                else
+                {
+                    doubleClickTimer = 0;
+                }
+
+                
             }
         }
     }
