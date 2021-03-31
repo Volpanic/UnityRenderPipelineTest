@@ -30,11 +30,5 @@ public class SquashAnStretch : MonoBehaviour
     {
         squishAmount = Vector3.Lerp(squishAmount,Vector3.one,ReformSpeed * Time.deltaTime);
         transform.localScale = squishAmount;
-
-        if (Mathf.Abs(squishAmount.magnitude - 1) < SettleGap)
-        {
-            //transform.localScale = Vector3.one;
-            //this.enabled = false;
-        }
     }
 }

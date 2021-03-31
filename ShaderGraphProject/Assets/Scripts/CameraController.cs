@@ -18,11 +18,13 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Set the offset based on distance to target, if one hasen't been set already.
         if (Offset != null && Offset == Vector3.zero)
         {
             Offset = Target.position - transform.position;
         }
 
+        //Move pivot to offset of target, then changes it's parent to the target.
         Pivot.transform.position = Target.position + (Target.right * RotateRadius);
         Pivot.transform.parent = Target.transform;
 
@@ -53,6 +55,7 @@ public class CameraController : MonoBehaviour
             Pivot.rotation = Quaternion.Euler(360f + MinViewAngle, 0, 0);
         }
 
+        //If the camera is locked, rotate the camera.
         if (Cursor.lockState == CursorLockMode.Locked)
         {
             float desYAngle = Target.eulerAngles.y;
@@ -61,15 +64,17 @@ public class CameraController : MonoBehaviour
             transform.position = Target.position - (rot * Offset);
         }
 
+        //Prevent the camera from going too low.
         if (transform.position.y < Target.position.y - 2.5f)
         {
             transform.position = new Vector3(transform.position.x, Target.position.y - 2.5f, transform.position.z);
         }
 
+        //Look at the target.
         transform.LookAt(Target.position +  ((Target.right + Target.up).normalized * RotateRadius));
     }
 
-    public void HandleLockState()
+    public void HandleLockState() // handels switching in and out of lock state on click and escape press
     {
         if (Cursor.lockState == CursorLockMode.Locked)
         {

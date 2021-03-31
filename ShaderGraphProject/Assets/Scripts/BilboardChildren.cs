@@ -16,6 +16,7 @@ public class BilboardChildren : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        //Loops through all children and makes the rotate towards the camera.
         for(int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).LookAt(cameraTransform);
