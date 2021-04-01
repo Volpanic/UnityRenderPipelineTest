@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7498b559d02e7de44b2d36f123104e27, type: 3}
+  m_Name: SummerChnage
+  m_EditorClassIdentifier: 
+  DialougeLines:
+  - id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
+      data:
+        DialougeText: Summer huh, Odd choice considering both of us despise the heat,
+          Thankfully we cna regulate that here, but nevertheless It's kind of bland
+          in my opinion.
+        SpeakerFace: {fileID: 21300000, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}

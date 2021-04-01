@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7498b559d02e7de44b2d36f123104e27, type: 3}
+  m_Name: TopOfMountain
+  m_EditorClassIdentifier: 
+  DialougeLines:
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
+  - id: 4
+  references:
+    version: 1
+    00000000:
+      type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
+      data:
+        DialougeText: Nice spot I guess.
+        SpeakerFace: {fileID: 0}
+    00000001:
+      type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
+      data:
+        DialougeText: You can really see the cracks in this places shoddy constructuon,
+          Like what's up with the conviniant wall of trees surrounding the place.
+        SpeakerFace: {fileID: 0}
+    00000002:
+      type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
+      data:
+        DialougeText: I know you use this place for the ambiance but like, It doesn't
+          do much for me.
+        SpeakerFace: {fileID: 0}
+    00000003:
+      type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
+      data:
+        DialougeText: It's uhh... fine I guess...........
+        SpeakerFace: {fileID: 0}
+    00000004:
+      type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
+      data:
+        DialougeText: Man Marigold! Have you ever heard of small talk goddam.
+        SpeakerFace: {fileID: 0}
