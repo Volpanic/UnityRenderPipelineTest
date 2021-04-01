@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialougePortrait : MonoBehaviour
 {
@@ -8,13 +9,13 @@ public class DialougePortrait : MonoBehaviour
 
     private Vector2  originalHeight;
     private Vector2 movingRect = Vector2.zero;
+    private Image image;
     private float timer = 0;
 
     private void OnEnable()
     {
         //Reset it so the effect can run again
         timer = 0;
-        //((RectTransform)transform).sizeDelta = Vector2.zero;
     }
 
     // Start is called before the first frame update

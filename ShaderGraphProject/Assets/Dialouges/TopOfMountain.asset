@@ -24,26 +24,26 @@ MonoBehaviour:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
         DialougeText: Nice spot I guess.
-        SpeakerFace: {fileID: 0}
+        SpeakerFace: {fileID: 2512220226045680920, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
     00000001:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
         DialougeText: You can really see the cracks in this places shoddy constructuon,
           Like what's up with the conviniant wall of trees surrounding the place.
-        SpeakerFace: {fileID: 0}
+        SpeakerFace: {fileID: 4775999926431344022, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
     00000002:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
         DialougeText: I know you use this place for the ambiance but like, It doesn't
           do much for me.
-        SpeakerFace: {fileID: 0}
+        SpeakerFace: {fileID: 4775999926431344022, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
     00000003:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
         DialougeText: It's uhh... fine I guess...........
-        SpeakerFace: {fileID: 0}
+        SpeakerFace: {fileID: 7682976431556434881, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
     00000004:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
         DialougeText: Man Marigold! Have you ever heard of small talk goddam.
-        SpeakerFace: {fileID: 0}
+        SpeakerFace: {fileID: 2512220226045680920, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}

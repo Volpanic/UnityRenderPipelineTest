@@ -28,6 +28,7 @@ public class DialougeEditor : Editor
                     sequence.DialougeLines.RemoveAt(i);
                     i--;
                     EditorUtility.SetDirty(target); // Mark that the item has been edited, so it saves
+                    Undo.RecordObject(target, "Removed Dialouge Line.");
                 }
 
             }
@@ -54,10 +55,17 @@ public class DialougeEditor : Editor
             EditorGUILayout.BeginHorizontal(); // Line
             {
                 //Speaker
+                EditorGUI.BeginChangeCheck();
                 line.SpeakerFace = EditorGUILayout.ObjectField("", line.SpeakerFace, typeof(Sprite), false, GUILayout.MaxWidth(64)) as Sprite;
 
                 EditorStyles.textField.wordWrap = true;
                 line.DialougeText = EditorGUILayout.TextArea(line.DialougeText, GUILayout.MaxHeight(64));
+
+                if(EditorGUI.EndChangeCheck())
+                {
+                    Undo.RecordObject(target, "Changed dialouge.");
+                    EditorUtility.SetDirty(target);
+                }
 
                 //GUILayout.FlexibleSpace();
 

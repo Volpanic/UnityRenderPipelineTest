@@ -2,20 +2,35 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialougeBox : MonoBehaviour // Handels fading in letters of the dialouge box.
 {
 
     public TextMeshProUGUI DialougeText;
+    public Image DialougePortraitImage;
     public float DelayBetweenLetter = 0.1f;
     public Transform DialougeDoneIndecator;
 
     private float timer = 0;
     private int maxCharecter = 1;
+    private int messageCount = 0;
+
+    [SerializeField]
+    private DialougeSequence playingSequence;
 
     private byte CharecterAlpha = 0;
 
     private bool active = true;
+
+    private void Start()
+    {
+        if(playingSequence != null)
+        {
+            DialougeText.text = playingSequence.DialougeLines[0].DialougeText;
+            DialougePortraitImage.sprite = playingSequence.DialougeLines[0].SpeakerFace;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -98,10 +113,46 @@ public class DialougeBox : MonoBehaviour // Handels fading in letters of the dia
             //Text should be done, so close if clicked
             if(Input.GetMouseButtonDown(0))
             {
-                gameObject.SetActive(false);
+                messageCount++;
+
+                //Reset values and play dialouge
+                active = true;
+                maxCharecter = 1;
+                CharecterAlpha = 0;
+                timer = 0;
+
+                if (messageCount > playingSequence.DialougeLines.Count-1)
+                {
+                    active = false;
+                    gameObject.SetActive(false);
+                }
+                else // Set new message info
+                {
+                    //Set the text to be the first message
+                    DialougeText.text = playingSequence.DialougeLines[messageCount].DialougeText;
+                    DialougePortraitImage.sprite = playingSequence.DialougeLines[messageCount].SpeakerFace;
+                }
             }
         }
 
        DialougeText.maxVisibleCharacters = maxCharecter;
+    }
+
+    public void PlayDialouge(DialougeSequence playThis)
+    {
+        //Reset values and play dialouge
+        active = true;
+        maxCharecter = 1;
+        CharecterAlpha = 0;
+        timer = 0;
+        messageCount = 0;
+
+        //Set the text to be the first message
+        DialougeText.text = playThis.DialougeLines[0].DialougeText;
+        DialougePortraitImage.sprite = playThis.DialougeLines[0].SpeakerFace;
+        playingSequence = playThis;
+
+        //Make sure the box is active
+        gameObject.SetActive(true);
     }
 }

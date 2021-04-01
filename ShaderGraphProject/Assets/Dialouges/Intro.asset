@@ -24,21 +24,21 @@ MonoBehaviour:
       data:
         DialougeText: Welcome to the Marigold Reserve! I'm Milrose! An A.I. park
           attendent....! Oh!! Ms. Marigold! Here for another day of leisure I suppose?
-        SpeakerFace: {fileID: 21300000, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
+        SpeakerFace: {fileID: -7141380944439719409, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
     00000001:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
         DialougeText: Running away from you actual responsililites in teh park really
           isn't doing this place wonders.
-        SpeakerFace: {fileID: 21300000, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
+        SpeakerFace: {fileID: 7682976431556434881, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
     00000002:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
         DialougeText: But fine, Take some time to relax, The weather board is over
           there if you wan't me to change anything.
-        SpeakerFace: {fileID: 21300000, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
+        SpeakerFace: {fileID: 7682976431556434881, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
     00000003:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
         DialougeText: Anyway have fun, I guess.
-        SpeakerFace: {fileID: 21300000, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
+        SpeakerFace: {fileID: -7394837827836452164, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}

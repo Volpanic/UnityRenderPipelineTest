@@ -23,15 +23,15 @@ MonoBehaviour:
       data:
         DialougeText: Ahh, This is defently more my style, A nice sunset with Autumn
           leaves. If i had an actual body I'd be enjoying the hell out of this.
-        SpeakerFace: {fileID: 21300000, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
+        SpeakerFace: {fileID: -7141380944439719409, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
     00000001:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
         DialougeText: I mean i don't know how, theres not much to do here anyway
           and there never will be if you keep taking these breaks.
-        SpeakerFace: {fileID: 21300000, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
+        SpeakerFace: {fileID: 2512220226045680920, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
     00000002:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
         DialougeText: Imagine programming an A.I. only for it to call you lazy.
-        SpeakerFace: {fileID: 21300000, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
+        SpeakerFace: {fileID: 7682976431556434881, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}

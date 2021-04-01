@@ -22,10 +22,10 @@ MonoBehaviour:
       data:
         DialougeText: Waterfall ayy, As much as I don't like water, the ambiance
           is worth getting wet once and while.
-        SpeakerFace: {fileID: 21300000, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
+        SpeakerFace: {fileID: -7141380944439719409, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
     00000001:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
         DialougeText: I mean not for me, I'll die being a computer and all, but you
           probably appreciate the sentiment.
-        SpeakerFace: {fileID: 21300000, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
+        SpeakerFace: {fileID: 7682976431556434881, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}

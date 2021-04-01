@@ -21,16 +21,17 @@ MonoBehaviour:
     00000000:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
-        DialougeText: I have no idea how you can enjoy this dismal weather!
-        SpeakerFace: {fileID: 21300000, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
+        DialougeText: I really don't know how you can enjoy this dismal weather, 
+          let alone have it be your favorite.
+        SpeakerFace: {fileID: 7682976431556434881, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
     00000001:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
-        DialougeText: Ignoring the fact that I'm a computer, Don't you just find
-          the rain dreadful.
-        SpeakerFace: {fileID: 21300000, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
+        DialougeText: Ignoring the fact that I'm a computer, Don't you find the rain
+          just dreadful.
+        SpeakerFace: {fileID: 4775999926431344022, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
     00000002:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
         DialougeText: Each to there own guess.
-        SpeakerFace: {fileID: 21300000, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
+        SpeakerFace: {fileID: 7682976431556434881, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}

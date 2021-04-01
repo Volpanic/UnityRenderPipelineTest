@@ -23,11 +23,11 @@ MonoBehaviour:
         DialougeText: It's nice and cool in here, I think... It's also like annoyingly
           barren, Like you constructed a mountain and added a cave, and now it's
           empty
-        SpeakerFace: {fileID: 21300000, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
+        SpeakerFace: {fileID: 2512220226045680920, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
     00000001:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
         DialougeText: I really don't get it. But hey if you have the money to construct
           a vaugly futeristic nature reserve with an A.I. tour guide, I guess making
           sense doesn't matter much.
-        SpeakerFace: {fileID: 0}
+        SpeakerFace: {fileID: 7682976431556434881, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
