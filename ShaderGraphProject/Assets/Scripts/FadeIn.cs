@@ -24,4 +24,11 @@ public class FadeIn : MonoBehaviour
         fadeOutColor.a = Mathf.MoveTowards(fadeOutColor.a, 0, Time.deltaTime);
         FadeInImage.color = fadeOutColor;
     }
+
+    // Restarts the fade in
+    public void Restart()
+    {
+        fadeOutColor.a = 1;
+        FadeInImage.color = fadeOutColor;
+    }
 }
