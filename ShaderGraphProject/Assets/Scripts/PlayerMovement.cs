@@ -2,132 +2,111 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Controls world movement and animation of the player
+// using unity's built in charecter controller.
+
 public class PlayerMovement : MonoBehaviour
 {
+    //Movement variables
     public float MoveSpeed = 100;
     public float JumpForce = 500;
-    public GameObject Capsule;
     public SquashAnStretch Squash;
-    private CustomCharecterController charecterController;
-    private Rigidbody body;
-
     public float TurnSpeed = 5;
 
-    private Vector3 rotvec = Vector3.zero;
-    private bool capsuleBeRotating = false;
     private bool landed = true;
-    private float capsuleRotateTimer = 0;
-    private float gBuf = 1;
-
+    private CharacterController charecterController;
     private float acceleration = 0;
 
-    private float coyoteTimer = 0;
+    // Gives a brief window when walking of ledges to jump
+    // Also used for FauxGrounded because build in ground detection
+    // is kind of poor.
+    private float coyoteTimer = 0.11f;
     private const float COYOTE_THRESH = 0.1f;
 
-    private float jumpBufferTimer = 0;
+    // Stores if the jump button was pushed in the air
+    // for a short amount of time, and then jumps when landed
+    private float jumpBufferTimer = 0.11f;
     private float JUMP_BUFFER_TIMER = 0.1f;
 
-    private Vector2 oldMovement = Vector2.zero;
+    private float yVelocity = 0; // Used for gravity and jumping
+    private Vector2 oldMovement = Vector2.zero; // Smooth movement vector for animation blending
 
     public Animator Animation;
 
+    // The default charecter controller grounded is clunky
+    // This returns if isGrounded was set true recently
+    private bool fauxGrounded
+    {
+        get
+        {
+            return charecterController.isGrounded || coyoteTimer < COYOTE_THRESH;
+        }
+    }
+
     private void Awake()
     {
-        charecterController = GetComponent<CustomCharecterController>();
-        body = GetComponent<Rigidbody>();
+        charecterController = GetComponent<CharacterController>();
     }
 
     void Update()
     {
+        //Move the player on the X and Y
         float hori = Input.GetAxisRaw("Horizontal");
         float vert = Input.GetAxisRaw("Vertical");
 
         Vector2 mement = new Vector2(hori, vert);
 
-        oldMovement = Vector2.MoveTowards(oldMovement, mement, MoveSpeed *  Time.deltaTime);
+        // Smoothly move old movement towards new movement for animation blending
+        oldMovement = Vector2.MoveTowards(oldMovement, mement, MoveSpeed * Time.deltaTime);
 
+        // Set animation varaibles
         Animation.SetFloat("Xpos", oldMovement.x);
         Animation.SetFloat("Ypos", oldMovement.y);
 
-        
-
-        // The Aiming Stuff
-        if (Input.GetMouseButtonDown(1))
-        {
-            Animation.SetBool("IsAiming", true);
-        }
-        else if (Input.GetMouseButtonUp(1))
-        {
-            Animation.SetBool("IsAiming", false);
-        }
-
-
         Vector3 movement = new Vector3(0, 0, 0);
 
-        if(vert != 0 || hori != 0)
+        if (vert != 0 || hori != 0)
         {
+            // Convert axis movement to world movement
             movement += (transform.forward * vert);
             movement += (transform.right * hori);
-            
-            if(charecterController.Grounded)
-            {
-                acceleration = Mathf.MoveTowards(acceleration, 1, Time.deltaTime * 8f);
-            }
-            else
-            {
-                if(acceleration >= 1)
-                {
-                    acceleration += Time.deltaTime * 0.5f;
-                }
-                else
-                {
-                    acceleration = Mathf.MoveTowards(acceleration, 1, Time.deltaTime * 8f);
-                }
-                
-            }
 
+            // Gradually move to max speed
+            acceleration = Mathf.MoveTowards(acceleration, 1, Time.deltaTime * 8f);
 
+            // get the final movememnt to move the player
             movement = movement.normalized * (MoveSpeed * acceleration);
-
-            
         }
-        else if(charecterController.Grounded) //Not Moving grounded
+        else if (fauxGrounded) //Not Moving grounded
         {
+            // Gradually halt when no movement occuring
             acceleration = Mathf.MoveTowards(acceleration, 0, Time.deltaTime * 8f);
         }
 
-
-        //
-        if(capsuleBeRotating)
-        {
-            capsuleRotateTimer += Time.deltaTime;
-            rotvec.x = Mathf.Lerp(0, 180, capsuleRotateTimer / 0.25f);
-
-            //Capsule.transform.localEulerAngles = rotvec;
-
-            if (capsuleRotateTimer >= 0.25f)
-            {
-                capsuleBeRotating = false;
-            }
-        }
-        //
-
-
-        charecterController.SimpleMove(movement);
-
-        if (charecterController.Grounded && gBuf >= 0.2f)
+        // Reset the coyote timer for fauxGrounded detection
+        if (charecterController.isGrounded)
         {
             coyoteTimer = 0;
+        }
+
+        if (fauxGrounded)
+        {
+            // Jump if jump pressed or if pressed with the jump buffer window
             if (Input.GetButtonDown("Jump") || jumpBufferTimer < JUMP_BUFFER_TIMER)
             {
-                Jump();   
+                Jump();
             }
         }
         else // In Air
         {
+            //Apply gravity
+            yVelocity -= 9.81f * Time.deltaTime;
+
+            // If we just walked off a cliff, jump if jump pressed
+            // else reset the jump buffer so if we land soon we jump
             if (Input.GetButtonDown("Jump"))
             {
-                if(coyoteTimer < COYOTE_THRESH)
+                if (coyoteTimer < COYOTE_THRESH)
                 {
                     coyoteTimer = COYOTE_THRESH;
                     Jump();
@@ -138,29 +117,13 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
+            // Increase both buffers so the don't happen constently
             coyoteTimer += Time.deltaTime;
             jumpBufferTimer += Time.deltaTime;
-
-            gBuf += Time.deltaTime;
-
         }
 
-        //if(!Animation.GetBool("Grounded"))
-        //{
-        //    if (charecterController.Grounded)
-        //    {
-        //        Animation.SetBool("Grounded", true);
-        //    }
-        //}
-        //else
-        //{
-        //    if (!charecterController.Grounded)
-        //    {
-        //        Animation.SetBool("Grounded", false);
-        //    }
-        //}
-
-        if(charecterController.Grounded || coyoteTimer < COYOTE_THRESH)
+        // If we just landed, apply some squash and stretch
+        if (fauxGrounded)
         {
             if (!landed)
             {
@@ -173,22 +136,28 @@ public class PlayerMovement : MonoBehaviour
             landed = false;
         }
 
-        Animation.SetBool("Grounded", charecterController.Grounded || coyoteTimer < COYOTE_THRESH);
+        // Move the player with movement vectory and it's y velocity
+        charecterController.Move(new Vector3(movement.x, yVelocity, movement.z) * Time.deltaTime);
 
-        Animation.SetFloat("Yvelocity", body.velocity.y);
+        // Set animation variables
+        Animation.SetBool("Grounded", fauxGrounded);
+        Animation.SetFloat("Yvelocity", yVelocity);
 
     }
 
     public void Jump()
     {
-        charecterController.Jump(JumpForce);
-        capsuleBeRotating = true;
-        capsuleRotateTimer = 0;
-        gBuf = 0;
+        //Set yvelocity to jump force
+        yVelocity = JumpForce;
+
+        //Manually set animation bool
         Animation.SetBool("Grounded", false);
+
+        //Reset the buffers
         jumpBufferTimer = JUMP_BUFFER_TIMER;
         coyoteTimer = COYOTE_THRESH;
 
-        Squash.SquishAmount = new Vector3(0.75f,1.25f, 0.75f);
+        //Apply some squash and stretch
+        Squash.SquishAmount = new Vector3(0.75f, 1.25f, 0.75f);
     }
 }
