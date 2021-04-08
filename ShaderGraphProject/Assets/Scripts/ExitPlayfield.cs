@@ -27,8 +27,15 @@ public class ExitPlayfield : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
+            // The default charecter controller doesn't allow you
+            // to manually set the players position, so disable it briefly
+            CharacterController controller = other.GetComponent<CharacterController>();
+
+            controller.enabled = false;
             other.gameObject.transform.position = respawnPos;
             other.gameObject.transform.eulerAngles = rotation;
+            controller.enabled = true;
+
             OnExitPlayfield.Invoke();
         }
     }

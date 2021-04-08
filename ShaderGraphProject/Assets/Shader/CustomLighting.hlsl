@@ -1,7 +1,7 @@
 ﻿#ifndef CUSTOM_LIGHTING_INCLUDED
 #define CUSTOM_LIGHTING_INCLUDED
 
-// Taken from Unity-Technologies github
+// Provided by Unity-Technologies github
 // https://github.com/Unity-Technologies/ShaderGraph-Custom-Lighting/blob/master/Assets/Includes/CustomLighting.hlsl
 
 void MainLight_float(float3 WorldPos, out float3 Direction, out float3 Color, out float DistanceAtten, out float ShadowAtten)

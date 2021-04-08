@@ -27,7 +27,7 @@ MonoBehaviour:
     00000001:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
-        DialougeText: I mean i don't know how, theres not much to do here anyway
+        DialougeText: I mean I don't know how, there's not much to do here anyway
           and there never will be if you keep taking these breaks.
         SpeakerFace: {fileID: 2512220226045680920, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
     00000002:

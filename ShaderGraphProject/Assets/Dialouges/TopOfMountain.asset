@@ -18,6 +18,7 @@ MonoBehaviour:
   - id: 2
   - id: 3
   - id: 4
+  - id: 5
   references:
     version: 1
     00000000:
@@ -45,5 +46,11 @@ MonoBehaviour:
     00000004:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
-        DialougeText: Man Marigold! Have you ever heard of small talk goddam.
+        DialougeText: Remember, to press escape and end your break at anytime, if
+          you're up here you've probably done everything.
+        SpeakerFace: {fileID: -238886307501180954, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
+    00000005:
+      type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
+      data:
+        DialougeText: Or just enjoy the ambiance, be my guest.
         SpeakerFace: {fileID: 2512220226045680920, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}

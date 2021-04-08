@@ -143,6 +143,12 @@ public class PlayerMovement : MonoBehaviour
         Animation.SetBool("Grounded", fauxGrounded);
         Animation.SetFloat("Yvelocity", yVelocity);
 
+        //Quit the game
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
     }
 
     public void Jump()

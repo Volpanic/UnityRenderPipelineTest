@@ -85,6 +85,7 @@ public class CameraController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = false;
             }
         }
         else
@@ -94,13 +95,12 @@ public class CameraController : MonoBehaviour
                 if(doubleClickTimer < 0.2)
                 {
                     Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = true;
                 }
                 else
                 {
                     doubleClickTimer = 0;
                 }
-
-                
             }
         }
     }
