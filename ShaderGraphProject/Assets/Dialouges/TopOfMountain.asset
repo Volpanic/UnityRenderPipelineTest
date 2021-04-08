@@ -46,7 +46,7 @@ MonoBehaviour:
     00000004:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
-        DialougeText: Remember, to press escape and end your break at anytime, if
+        DialougeText: Remember, to press enter and end your break at anytime, if
           you're up here you've probably done everything.
         SpeakerFace: {fileID: -238886307501180954, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
     00000005:

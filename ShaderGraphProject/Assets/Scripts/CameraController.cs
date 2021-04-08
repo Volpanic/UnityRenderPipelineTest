@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
     public Transform Pivot;
     public Vector3 Offset;
 
-    [Range(0.1f,1f)]
+    [Range(0.1f, 1f)]
     public float Sensitivity = 1;
 
     public float RotateSpeed;
@@ -31,6 +31,7 @@ public class CameraController : MonoBehaviour
         Pivot.transform.parent = Target.transform;
 
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -38,28 +39,28 @@ public class CameraController : MonoBehaviour
     {
         HandleLockState();
 
-        //Get the xpos of the mouse
-        float mH = Input.GetAxis("Mouse X") * RotateSpeed;
-        Target.Rotate(0, mH * Sensitivity, 0);
-
-        // Y 
-        float mV = Input.GetAxis("Mouse Y") * RotateSpeed;
-        Pivot.Rotate(-mV * Sensitivity, 0, 0);
-
-        //Limit Camera
-        if (Pivot.rotation.eulerAngles.x > MaxViewAngle && Pivot.rotation.eulerAngles.x < 180f)
-        {
-            Pivot.rotation = Quaternion.Euler(MaxViewAngle, 0, 0);
-        }
-
-        if (Pivot.rotation.eulerAngles.x > 180f && Pivot.rotation.eulerAngles.x < 360f + MinViewAngle)
-        {
-            Pivot.rotation = Quaternion.Euler(360f + MinViewAngle, 0, 0);
-        }
-
         //If the camera is locked, rotate the camera.
         if (Cursor.lockState == CursorLockMode.Locked)
         {
+            //Get the xpos of the mouse
+            float mH = Input.GetAxis("Mouse X") * RotateSpeed;
+            Target.Rotate(0, mH * Sensitivity, 0);
+
+            // Y 
+            float mV = Input.GetAxis("Mouse Y") * RotateSpeed;
+            Pivot.Rotate(-mV * Sensitivity, 0, 0);
+
+            //Limit Camera
+            if (Pivot.rotation.eulerAngles.x > MaxViewAngle && Pivot.rotation.eulerAngles.x < 180f)
+            {
+                Pivot.rotation = Quaternion.Euler(MaxViewAngle, 0, 0);
+            }
+
+            if (Pivot.rotation.eulerAngles.x > 180f && Pivot.rotation.eulerAngles.x < 360f + MinViewAngle)
+            {
+                Pivot.rotation = Quaternion.Euler(360f + MinViewAngle, 0, 0);
+            }
+
             float desYAngle = Target.eulerAngles.y;
             float desXAngle = Pivot.eulerAngles.x;
             Quaternion rot = Quaternion.Euler(desXAngle, desYAngle, 0);
@@ -73,7 +74,7 @@ public class CameraController : MonoBehaviour
         }
 
         //Look at the target.
-        transform.LookAt(Target.position +  ((Target.right + Target.up).normalized * RotateRadius));
+        transform.LookAt(Target.position + ((Target.right + Target.up).normalized * RotateRadius));
 
         doubleClickTimer += Time.deltaTime;
     }
@@ -85,17 +86,17 @@ public class CameraController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = false;
+                Cursor.visible = true;
             }
         }
         else
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if(doubleClickTimer < 0.2)
+                if (doubleClickTimer < 0.2)
                 {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.Locked; 
+                    Cursor.visible = false;
                 }
                 else
                 {

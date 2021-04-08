@@ -144,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
         Animation.SetFloat("Yvelocity", yVelocity);
 
         //Quit the game
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Return))
         {
             Application.Quit();
         }

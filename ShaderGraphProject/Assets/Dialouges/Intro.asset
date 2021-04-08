@@ -17,6 +17,7 @@ MonoBehaviour:
   - id: 1
   - id: 2
   - id: 3
+  - id: 4
   references:
     version: 1
     00000000:
@@ -34,7 +35,7 @@ MonoBehaviour:
     00000002:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
-        DialougeText: But fine, Take some time to relax, The weather board is over
+        DialougeText: But fine, Take some time to relax, The weather changer is over
           there if you wan't me to change anything.
         SpeakerFace: {fileID: 7682976431556434881, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
     00000003:
@@ -42,3 +43,10 @@ MonoBehaviour:
       data:
         DialougeText: Anyway have fun, I guess.
         SpeakerFace: {fileID: -7394837827836452164, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
+    00000004:
+      type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
+      data:
+        DialougeText: Also remember, pressing escape unlocks the cursor, you need
+          to do that for the weather changer and my terminals. Then double click
+          to lock the cursor again.
+        SpeakerFace: {fileID: -238886307501180954, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}

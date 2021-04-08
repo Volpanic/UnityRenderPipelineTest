@@ -20,6 +20,6 @@ MonoBehaviour:
       type: {class: DialougeLine, ns: , asm: Assembly-CSharp}
       data:
         DialougeText: Summer huh, Odd choice considering both of us despise the heat,
-          Thankfully we cna regulate that here, but nevertheless It's kind of bland
+          Thankfully we can regulate that here, but nevertheless It's kind of bland
           in my opinion.
         SpeakerFace: {fileID: 4775999926431344022, guid: 2966d6fd25e37a2489729d8e3fff9463, type: 3}
